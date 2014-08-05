@@ -89,7 +89,7 @@ class WPGo_Theme_Options {
 	public function render_support_fields() {
 		?>
 		<div class="wpgo-buttons">
-			<a class="button-secondary wpgo-lower" href="http://wpgothemes.com/<?php echo WPGO_THEME_NAME_H; ?>-setup/" target="_blank">Theme Setup Tutorial</a>
+			<a class="button-secondary wpgo-lower" href="http://wpgothemes.com/free-theme-setup/" target="_blank">Theme Setup Tutorial</a>
 			<a class="button-secondary wpgo-lower" href="http://wpgothemes.com/free-theme-support/" target="_blank">Free Theme Support</a>
 			<span><a href="https://twitter.com/dgwyer" target="_blank" title="Come join me on Twitter and say hello!"><i class="wpgo-dashicon-font wpgo-twitter-button"></i></a></span>
 		</div>
