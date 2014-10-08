@@ -224,7 +224,12 @@ class WPGo_Utility_Callbacks {
 		$wpgo_home_page     = is_home();
 
 		/* Test $wp-query->queried_object property, and that it has a valid ID, as it may not always exist (i.e. on 404.php page, or search.php). */
-		$wpgo_post_id = isset( $wp_query->queried_object ) ? $wp_query->queried_object->ID : null;
+		//$wpgo_post_id = isset( $wp_query->queried_object ) ? $wp_query->queried_object->ID : null;
+
+		// This will be null for 404 or search pages, or of WP_Post, WP_User object, stdClass class type etc.
+		$wpgo_queried_object = get_queried_object();
+
+		$wpgo_post_id = isset( $wpgo_queried_object->ID ) ? $wpgo_queried_object->ID : null;
 
 		/* Modify the post ID if necessary.
 		 *

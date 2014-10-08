@@ -43,8 +43,6 @@ class WPGo_MetaBoxes {
 
 		/* Retrieve our custom meta box values. */
 		$wpgo_column_layout            = get_post_meta( $post->ID, '_wpgo_column_layout', true );
-		$wpgo_portfolio_group          = get_post_meta( $post->ID, '_wpgo_portfolio_group', true );
-		$wpgo_portfolio_columns        = get_post_meta( $post->ID, '_wpgo_portfolio_columns', true );
 		$wpgo_theme_column_layout_save = get_post_meta( $post->ID, '_wpgo_column_layout_save', true );
 		$hide_title_header_tag         = get_post_meta( $post->ID, '_wpgo_hide_title_header_tag', true );
 		?>
@@ -85,71 +83,6 @@ class WPGo_MetaBoxes {
 		<?php
 		}
 
-		/* Only show these fields on pages. */
-		if ( $page_type == 'page' ) {
-
-			$pf_group_exists = get_terms( 'wpgo_portfolio_group', 'orderby=ID&number=1' );
-
-			/* Check for the portfolio-page.php page template. */
-			if ( post_type_exists( 'wpgo_portfolio' ) && isset( $post->page_template ) && basename( $post->page_template ) == 'portfolio-page.php' && ! empty( $pf_group_exists ) ) {
-
-				/* Important! When portfolio group first selected, save a default group (if any exist). */
-				if ( empty( $wpgo_portfolio_group ) ) {
-					$pf_group = get_terms( 'wpgo_portfolio_group', 'orderby=ID&number=1' );
-					if ( ! empty( $pf_group ) ) {
-						update_post_meta( $post->ID, '_wpgo_portfolio_group', $pf_group[0]->term_id );
-					}
-				}
-
-				?>
-
-				<div class="inside" style="margin-bottom:1px;">
-					<label for="<?php echo $wpgo_portfolio_group; ?>"><?php _e( 'Portfolio group', 'wpgothemes' ); ?>:</label>
-
-					<?php
-					$args = array(
-						//'id' =>			$wpgo_portfolio_group,
-						'orderby'      => 'name',
-						'hide_empty'   => 1,
-						'hierarchical' => 1,
-						'show_count'   => 1,
-						'name'         => 'wpgo_portfolio_group',
-						'taxonomy'     => 'wpgo_portfolio_group',
-						'class'        => 'widefat',
-						'selected'     => $wpgo_portfolio_group
-					);
-					wp_dropdown_categories( $args );
-					?>
-
-				</div>
-
-				<div class="inside">
-					<p>
-						<?php _e( 'Portfolio image size', 'wpgothemes' ); ?>:<br />
-						<select name='wpgo_portfolio_columns' class='widefat'>
-							<option value='large' <?php selected( 'large', $wpgo_portfolio_columns ); ?>><?php _e( 'Large', 'wpgothemes' ); ?></option>
-							<option value='medium' <?php selected( 'medium', $wpgo_portfolio_columns ); ?>><?php _e( 'Medium', 'wpgothemes' ); ?></option>
-							<option value='small' <?php selected( 'small', $wpgo_portfolio_columns ); ?>><?php _e( 'Small', 'wpgothemes' ); ?></option>
-						</select>
-					</p>
-				</div>
-
-				<?php
-
-				/* Important! Save default column option when Portfolio template first selected. */
-				$pf_columns_exists = get_post_meta( $post->ID, '_wpgo_portfolio_columns', true );
-				if ( empty( $pf_columns_exists ) ) {
-					update_post_meta( $post->ID, '_wpgo_portfolio_columns', 'large' );
-				}
-
-			} elseif ( post_type_exists( 'wpgo_portfolio' ) && isset( $post->page_template ) && basename( $post->page_template ) == 'portfolio-page.php' && empty( $pf_group_exists ) ) {
-				echo '<div class="inside submitbox"><p><a href="' . admin_url( 'edit.php?post_type=wpgo_portfolio' ) . '" class="submitdelete" target="_blank">Add Portfolio items to a group!</a></p></div>';
-			}
-
-			?>
-
-		<?php
-		}
 	}
 
 	/**
@@ -190,14 +123,6 @@ class WPGo_MetaBoxes {
 		$meta_hide_title_header_tag = get_post_meta( $post_id, '_wpgo_hide_title_header_tag', true );
 		if ( ! isset( $_POST['wpgo_hide_title_header_tag'] ) && $meta_hide_title_header_tag == 1 ) {
 			update_post_meta( $post_id, '_wpgo_hide_title_header_tag', '' );
-		}
-
-		if ( isset( $_POST['wpgo_portfolio_group'] ) ) {
-			update_post_meta( $post_id, '_wpgo_portfolio_group', esc_attr( $_POST['wpgo_portfolio_group'] ) );
-		}
-
-		if ( isset( $_POST['wpgo_portfolio_columns'] ) ) {
-			update_post_meta( $post_id, '_wpgo_portfolio_columns', esc_attr( $_POST['wpgo_portfolio_columns'] ) );
 		}
 	}
 

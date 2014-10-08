@@ -2,7 +2,7 @@
 Theme Name: Minn Lite
 Theme URI: http://demo.wpgothemes.com/minn
 Description: A beautifully simple modern HTML5 & CSS3 mobile ready theme for ANY type of site! Incorporates a fully responsive design from WPGO themes, and looks fantastic on all devices (desktop, laptop, tablet, iOS, Android)!
-Version: 0.11
+Version: 0.12
 Author: David Gwyer
 Author URI: http://www.wpgothemes.com/
 Tags: one-column, two-columns, three-columns, right-sidebar, left-sidebar, custom-colors, custom-background, custom-menu, sticky-post, editor-style, theme-options, threaded-comments, translation-ready, featured-images, responsive-layout, fluid-layout, full-width-template
@@ -490,6 +490,10 @@ p a.button:link, p a.button:visited, p a.button:hover {
 }
 
 /*** Navigation ***/
+
+#header-container .nav-wrap {
+	clear: both;
+}
 
 nav.primary-menu {
 	max-width: 960px;
@@ -1202,7 +1206,7 @@ footer .widget {
 	padding:    0;
 }
 
-footer .widget:first-child, footer .slider-wrapper:first-child {
+footer .widget:first-child {
 	margin-left: 0;
 }
 
@@ -1719,7 +1723,7 @@ ul#filters li a {
 		width: 95%;
 	}
 
-	footer .widget:first-child, footer .slider-wrapper:first-child {
+	footer .widget:first-child {
 		margin-left: 2.1%;
 	}
 
