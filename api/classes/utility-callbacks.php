@@ -19,7 +19,6 @@ class WPGo_Utility_Callbacks {
 		add_filter( 'wp_page_menu_args', array( &$this, 'theme_page_menu_args' ) );
 		add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
 		add_action( 'wpgo_before_head', array( &$this, 'wpgo_custom_before_head' ) );
-		add_action( 'wpgo_before_head', array( &$this, 'clean_head_tag' ) );
 		add_action( 'wpgo_head_top', array( &$this, 'wpgo_theme_title' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_open_sans_font' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_dashicons_font' ) );
@@ -60,20 +59,6 @@ class WPGo_Utility_Callbacks {
 	?><!doctype html>
 	<html <?php language_attributes(); ?>>
 	<?php
-	}
-
-	/**
-	 * Clean up the header and remove some of the default content added by WordPress.
-	 *
-	 * @since 0.1.0
-	 */
-	public function clean_head_tag() {
-		remove_action( 'wp_head', 'feed_links_extra', 3 ); // Displays the links to the extra feeds such as category feeds
-		remove_action( 'wp_head', 'feed_links', 2 ); // Displays the links to the general feeds: Post and Comment Feed
-		remove_action( 'wp_head', 'rsd_link' ); // Displays the link to the Really Simple Discovery service endpoint, EditURI link
-		remove_action( 'wp_head', 'wlwmanifest_link' ); // Displays the link to the Windows Live Writer manifest file.
-		remove_action( 'wp_head', 'index_rel_link' ); // Displays the rel index link
-		remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
 	}
 
 	/**
@@ -135,16 +120,13 @@ class WPGo_Utility_Callbacks {
 	}
 
 	/**
-	 * Output the site title.
+	 * Output browser title for the current page.
 	 *
 	 * @since 0.1.0
 	 */
 	public function wpgo_theme_title() {
 
-		$title = wp_title( '|', false, 'right' ) . get_bloginfo( 'name' );
-
-		/* Show browser title for current page. */
-		echo "<title>" . $title . "</title>";
+		echo "<title>" . wp_title( '|', false, 'right' ) . "</title>";
 	}
 
 	/**
