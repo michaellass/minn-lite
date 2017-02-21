@@ -19,16 +19,16 @@ class WPGo_Template_Parts {
 	public function __construct() {
 
 		/* Initialized here as expressions not allowed in class property declarations. */
-		$this->default_loop_args = array( 'more'              => __( 'Read More', 'wpgothemes' ),
-										  'next'              => '&laquo;&nbsp;' . __( 'Older Entries', 'wpgothemes' ),
-										  'prev'              => __( 'Newer Entries', 'wpgothemes' ) . '&nbsp;&raquo;',
+		$this->default_loop_args = array( 'more'              => __( 'Read More', 'minn-lite' ),
+										  'next'              => '&laquo;&nbsp;' . __( 'Older Entries', 'minn-lite' ),
+										  'prev'              => __( 'Newer Entries', 'minn-lite' ) . '&nbsp;&raquo;',
 										  'date_sep'          => ' / ',
 										  'author_sep'        => ' / ',
 										  'tag_sep'           => '',
 										  'cat_sep'           => ' / ',
-										  'author_prefix'     => __( 'By ', 'wpgothemes' ) . ' ',
-										  'tag_prefix'        => __( 'Tags', 'wpgothemes' ) . ': ',
-										  'cat_prefix'        => __( 'In', 'wpgothemes' ) . ' ',
+										  'author_prefix'     => __( 'By ', 'minn-lite' ) . ' ',
+										  'tag_prefix'        => __( 'Tags', 'minn-lite' ) . ': ',
+										  'cat_prefix'        => __( 'In', 'minn-lite' ) . ' ',
 										  'render_date'       => true,
 										  'render_author'     => true,
 										  'render_tags'       => true,
@@ -52,10 +52,10 @@ class WPGo_Template_Parts {
 
 		// Add next/prev post link defaults. These can be overidden via the parent/child theme
 		if ( ! isset( $args['next'] ) ) {
-			$args['next'] = __( 'Next', 'wpgothemes' ) . '&nbsp;<i class="genericon-next"></i>';
+			$args['next'] = __( 'Next', 'minn-lite' ) . '&nbsp;<i class="genericon-next"></i>';
 		}
 		if ( ! isset( $args['prev'] ) ) {
-			$args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'wpgothemes' );
+			$args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'minn-lite' );
 		}
 
 		$args = extract( $this->merge_loop_arguments( $args ) );
@@ -83,7 +83,7 @@ class WPGo_Template_Parts {
 
 									<?php if ( $render_comments && comments_open() ) : ?>
 										<?php echo $cat_sep; ?>
-										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'wpgothemes' ), __( '1 Comment', 'wpgothemes' ), __( '% Comments', 'wpgothemes' ), '', '' ); ?></span>
+										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'minn-lite' ), __( '1 Comment', 'minn-lite' ), __( '% Comments', 'minn-lite' ), '', '' ); ?></span>
 									<?php endif; ?>
 								</p>
 							</div><!-- .post-meta -->
@@ -120,7 +120,7 @@ class WPGo_Template_Parts {
 							<div class="post-meta">
 								<?php WPGo_Hooks::wpgo_post_archive_meta_footer(); ?>
 								<p<?php echo $footer_align_meta; ?>>
-									<?php the_tags( '<span class="tags">' . $tag_prefix, ', ', '</span>' . $tag_sep ); ?>
+									<?php the_tags( '<span class="tags">' . $tag_prefix, ' ', '</span>' . $tag_sep ); ?>
 								</p>
 							</div>
 							<!-- .post-meta -->
@@ -152,8 +152,8 @@ class WPGo_Template_Parts {
 	public function author_archive_loop( $args = array() ) {
 
 		// Add next/prev post link defaults. These can be overidden via the parent/child theme
-		if ( ! isset( $args['next'] ) ) $args['next'] = __( 'Next', 'wpgothemes' ) . '&nbsp;<i class="genericon-next"></i>';
-		if ( ! isset( $args['prev'] ) ) $args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'wpgothemes' );
+		if ( ! isset( $args['next'] ) ) $args['next'] = __( 'Next', 'minn-lite' ) . '&nbsp;<i class="genericon-next"></i>';
+		if ( ! isset( $args['prev'] ) ) $args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'minn-lite' );
 
 		$args = extract( $this->merge_loop_arguments( $args ) );
 		?>
@@ -180,7 +180,7 @@ class WPGo_Template_Parts {
 
 									<?php if ( $render_comments && comments_open() ) : ?>
 										<?php echo $cat_sep; ?>
-										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'wpgothemes' ), __( '1 Comment', 'wpgothemes' ), __( '% Comments', 'wpgothemes' ), '', '' ); ?></span>
+										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'minn-lite' ), __( '1 Comment', 'minn-lite' ), __( '% Comments', 'minn-lite' ), '', '' ); ?></span>
 									<?php endif; ?>
 								</p>
 							</div><!-- .post-meta -->
@@ -216,7 +216,7 @@ class WPGo_Template_Parts {
 							<div class="post-meta">
 								<?php WPGo_Hooks::wpgo_post_archive_meta_footer(); ?>
 								<p<?php echo $footer_align_meta; ?>>
-									<?php the_tags( '<span class="tags">' . $tag_prefix, ', ', '</span>' . $tag_sep ); ?>
+									<?php the_tags( '<span class="tags">' . $tag_prefix, ' ', '</span>' . $tag_sep ); ?>
 								</p>
 							</div>
 							<!-- .post-meta -->
@@ -250,8 +250,8 @@ class WPGo_Template_Parts {
 	public function loop_meta_bottom( $args = array() ) {
 
 		// Add next/prev post link defaults. These can be overidden via the parent/child theme
-		if ( ! isset( $args['next'] ) ) $args['next'] = __( 'Next', 'wpgothemes' ) . '&nbsp;<i class="genericon-next"></i>';
-		if ( ! isset( $args['prev'] ) ) $args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'wpgothemes' );
+		if ( ! isset( $args['next'] ) ) $args['next'] = __( 'Next', 'minn-lite' ) . '&nbsp;<i class="genericon-next"></i>';
+		if ( ! isset( $args['prev'] ) ) $args['prev'] = '<i class="genericon-previous"></i>&nbsp;' . __( 'Previous', 'minn-lite' );
 
 		$args = extract( $this->merge_loop_arguments( $args ) );
 		?>
@@ -301,11 +301,11 @@ class WPGo_Template_Parts {
 										<span class="author"><?php echo $author_prefix; ?><?php the_author_posts_link(); ?></span><?php echo $author_sep; ?><?php endif ?>
 									<?php if ( $render_cats ) : ?>
 										<span class="categories"><?php echo $cat_prefix; ?><?php the_category( ', ' ) ?></span><?php echo $cat_sep; ?><?php endif ?>
-									<?php if ( $render_tags && has_tag( '', get_the_ID() ) ) : the_tags( '<span class="tags">' . $tag_prefix, ', ', '</span>' ); endif ?>
+									<?php if ( $render_tags && has_tag( '', get_the_ID() ) ) : the_tags( '<span class="tags">' . $tag_prefix, ' ', '</span>' ); endif ?>
 
 									<?php if ( $render_comments && comments_open() ) : ?>
 										<?php echo $tag_sep; ?>
-										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'wpgothemes' ), __( '1 Comment', 'wpgothemes' ), __( '% Comments', 'wpgothemes' ), '', '' ); ?></span>
+										<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'minn-lite' ), __( '1 Comment', 'minn-lite' ), __( '% Comments', 'minn-lite' ), '', '' ); ?></span>
 									<?php endif; ?>
 								</p>
 							</div><!-- .post-meta -->
@@ -353,7 +353,7 @@ class WPGo_Template_Parts {
 
 								<?php if ( $render_comments && comments_open() ) : ?>
 									<?php echo $cat_sep; ?>
-									<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'wpgothemes' ), __( '1 Comment', 'wpgothemes' ), __( '% Comments', 'wpgothemes' ), '', '' ); ?></span>
+									<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'minn-lite' ), __( '1 Comment', 'minn-lite' ), __( '% Comments', 'minn-lite' ), '', '' ); ?></span>
 								<?php endif; ?>
 							</p>
 						</div><!-- .post-meta -->
@@ -375,7 +375,7 @@ class WPGo_Template_Parts {
 						<div class="post-meta">
 							<?php WPGo_Hooks::wpgo_post_archive_meta_footer(); ?>
 							<p<?php echo $footer_align_meta; ?>>
-								<?php the_tags( '<span class="tags">' . $tag_prefix, ', ', '</span>' . $tag_sep ); ?>
+								<?php the_tags( '<span class="tags">' . $tag_prefix, ' ', '</span>' . $tag_sep ); ?>
 							</p>
 						</div>
 						<!-- .post-meta -->
@@ -384,7 +384,7 @@ class WPGo_Template_Parts {
 
 			</article> <!-- .post -->
 
-			<?php edit_post_link( __( 'Edit', 'wpgothemes' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'minn-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 			<?php comments_template( '', true ); ?>
 
@@ -428,7 +428,7 @@ class WPGo_Template_Parts {
 
 			</article> <!-- .post -->
 
-			<?php edit_post_link( __( 'Edit', 'wpgothemes' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'minn-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 			<?php comments_template( '', true ); ?>
 
@@ -465,7 +465,7 @@ class WPGo_Template_Parts {
 
 			</article> <!-- .post -->
 
-			<?php edit_post_link( __( 'Edit', 'wpgothemes' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'minn-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 			<?php comments_template( '', true ); ?>
 
@@ -479,12 +479,12 @@ class WPGo_Template_Parts {
 
 		<article>
 			<div>
-				<h2 class="page-title"><?php _e( 'Error 404 - Page not found!', 'wpgothemes' ) ?></h2>
+				<h2 class="page-title"><?php _e( 'Error 404 - Page not found!', 'minn-lite' ) ?></h2>
 
 				<div>
 					<p>
-						<?php _e( 'Apologies, but the page you trying to reach does not exist, or has been moved. Why not try going back to the ', 'wpgothemes' ) ?>
-						<a href="<?php echo home_url(); ?>"><?php _e( 'home', 'wpgothemes' ) ?></a> page<?php _e( ', using the menus, or searching for something more specific?', 'wpgothemes' ) ?>
+						<?php _e( 'Apologies, but the page you trying to reach does not exist, or has been moved. Why not try going back to the ', 'minn-lite' ) ?>
+						<a href="<?php echo home_url(); ?>"><?php _e( 'home', 'minn-lite' ) ?></a> page<?php _e( ', using the menus, or searching for something more specific?', 'minn-lite' ) ?>
 					</p>
 
 					<div class="search404"><?php get_search_form(); ?></div>
@@ -513,8 +513,8 @@ class WPGo_Template_Parts {
 
 		<?php if ( have_posts() ) : ?>
 
-			<h2 id="search-results-header" class="entry-title"><?php _e( 'Search results for', 'wpgothemes' ); ?><?php echo ' \'' . $s . '\''; ?></h2>
-			<div id="search-matches"><?php printf( _n( '%d match found', '%d matches found', $total_results, 'wpgothemes' ), $total_results ); ?></div>
+			<h2 id="search-results-header" class="entry-title"><?php _e( 'Search results for', 'minn-lite' ); ?><?php echo ' \'' . $s . '\''; ?></h2>
+			<div id="search-matches"><?php printf( _n( '%d match found', '%d matches found', $total_results, 'minn-lite' ), $total_results ); ?></div>
 
 			<hr id="search-hr">
 
@@ -534,7 +534,7 @@ class WPGo_Template_Parts {
 
 					<header>
 
-						<?php $no_title = __( '(no title)', 'wpgothemes' ); ?>
+						<?php $no_title = __( '(no title)', 'minn-lite' ); ?>
 
 						<?php WPGo_Utility::check_empty_post_title( get_the_ID(), 'h3', $no_title, 'search-loop-header' ); ?>
 
@@ -567,21 +567,21 @@ class WPGo_Template_Parts {
 
 			<div id="post-0" class="post no-results not-found">
 
-				<h2 class="entry-title"><?php _e( 'No search results found...', 'wpgothemes' ); ?></h2>
+				<h2 class="entry-title"><?php _e( 'No search results found...', 'minn-lite' ); ?></h2>
 
-				<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords. Or, choose from the links below to navigate to another page.', 'wpgothemes' ); ?></p>
+				<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords. Or, choose from the links below to navigate to another page.', 'minn-lite' ); ?></p>
 
 				<div style="margin:0 auto;width:300px;"><?php get_search_form(); ?></div>
 
 				<div class="widget" style="width:260px;float:left;">
-					<h3 class="widget-title"><?php _e( 'Pages', 'wpgothemes' ); ?></h3>
+					<h3 class="widget-title"><?php _e( 'Pages', 'minn-lite' ); ?></h3>
 					<ul>
 						<?php wp_list_pages( 'title_li=' ); ?>
 					</ul>
 				</div>
 
 				<div class="widget" style="width:260px;float:right;">
-					<h3 class="widget-title"><?php _e( 'Post Categories', 'wpgothemes' ); ?></h3>
+					<h3 class="widget-title"><?php _e( 'Post Categories', 'minn-lite' ); ?></h3>
 					<ul>
 						<?php //wp_list_cats();
 						wp_list_categories(); ?>
@@ -621,7 +621,7 @@ class WPGo_Template_Parts {
 
 					<?php if ( $render_comments && comments_open() ) : ?>
 						<?php echo $cat_sep; ?>
-						<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'wpgothemes' ), __( '1 Comment', 'wpgothemes' ), __( '% Comments', 'wpgothemes' ), '', '' ); ?></span>
+						<span class="comments"><?php comments_popup_link( __( 'Leave Comment', 'minn-lite' ), __( '1 Comment', 'minn-lite' ), __( '% Comments', 'minn-lite' ), '', '' ); ?></span>
 					<?php endif; ?>
 				</p>
 			</div><!-- .post-meta -->
@@ -654,12 +654,12 @@ class WPGo_Template_Parts {
 		?>
 		<article>
 			<div>
-				<h2 class="page-title"><?php _e( 'Page not found!', 'wpgothemes' ) ?></h2>
+				<h2 class="page-title"><?php _e( 'Page not found!', 'minn-lite' ) ?></h2>
 
 				<div>
 					<p>
-						<?php _e( 'Apologies, but the page you trying to reach does not exist, or has been moved. Why not try going back to the ', 'wpgothemes' ) ?>
-						<a href="<?php echo home_url(); ?>"><?php _e( 'home', 'wpgothemes' ) ?></a> page<?php _e( ', using the menus, or searching for something more specific?', 'wpgothemes' ) ?>
+						<?php _e( 'Apologies, but the page you trying to reach does not exist, or has been moved. Why not try going back to the ', 'minn-lite' ) ?>
+						<a href="<?php echo home_url(); ?>"><?php _e( 'home', 'minn-lite' ) ?></a> page<?php _e( ', using the menus, or searching for something more specific?', 'minn-lite' ) ?>
 					</p>
 
 					<div class="search404"><?php get_search_form(); ?></div>

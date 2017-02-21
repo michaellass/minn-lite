@@ -3,6 +3,13 @@
 Minn Lite created by David Gwyer
 Website: http://www.wpgothemes.com
 
+*0.2*
+
+* Updated to work with WordPress 4.7.2.
+* More color pickers added.
+* New color scheme.
+* Many small bug fixes and tweaks.
+
 *0.1*
 
 * Initial release.

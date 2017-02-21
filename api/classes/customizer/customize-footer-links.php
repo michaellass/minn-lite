@@ -95,7 +95,7 @@ class WPGo_Customize_Footer_Links {
 		}
 
 		$wp_customize->add_section( 'wpgo_footer_links_section', array(
-			'title'          => __( 'Footer Links', 'wpgothemes' ),
+			'title'          => __( 'Footer Links', 'minn-lite' ),
 			'priority'       => 121,
 			'theme_supports' => 'wpgo-footer-links'
 		) );
@@ -103,14 +103,19 @@ class WPGo_Customize_Footer_Links {
 		/* Add textarea control to manage custom footer links HTML via the theme customizer. */
 		$wp_customize->add_setting( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_txtar_footer_links]', array(
 			'default' => $wpgo_customizer_defaults['wpgo_txtar_footer_links'],
-			'type'    => 'option'
+			'type'    => 'option',
+			'sanitize_callback' => array( &$this, 'sanitize_text' ),
 		) );
 
 		$wp_customize->add_control( new WPGo_Customize_Textarea_Control( $wp_customize, 'wpgo_txtar_footer_links', array(
-			'label'    => __( 'Customize Footer Links HTML', 'wpgothemes' ),
+			'label'    => __( 'Customize Footer Links HTML', 'minn-lite' ),
 			'section'  => 'wpgo_footer_links_section',
 			'settings' => WPGO_CUSTOMIZE_DB_NAME . '[wpgo_txtar_footer_links]'
 		) ) );
+	}
+
+	public function sanitize_text( $input ) {
+		return wp_kses_post( force_balance_tags( $input ) );
 	}
 
 	/**

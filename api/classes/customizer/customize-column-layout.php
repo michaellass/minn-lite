@@ -60,29 +60,48 @@ class WPGo_Customize_Column_Layout {
 		global $wpgo_customizer_defaults;
 
 		$column_array = array(
-			'1-col'   => __( '1-Column (full width)', 'wpgothemes' ),
-			'2-col-l' => __( '2-Column Sidebar Left', 'wpgothemes' ),
-			'2-col-r' => __( '2-Column Sidebar Right', 'wpgothemes' ),
-			'3-col-l' => __( '3-Column Sidebars Left', 'wpgothemes' ),
-			'3-col-r' => __( '3-Column Sidebars Right', 'wpgothemes' ),
-			'3-col-c' => __( '3-Column Sidebars Center', 'wpgothemes' )
+			'1-col'   => __( '1-Column (full width)', 'minn-lite' ),
+			'2-col-l' => __( '2-Column Sidebar Left', 'minn-lite' ),
+			'2-col-r' => __( '2-Column Sidebar Right', 'minn-lite' ),
+			'3-col-l' => __( '3-Column Sidebars Left', 'minn-lite' ),
+			'3-col-r' => __( '3-Column Sidebars Right', 'minn-lite' ),
+			'3-col-c' => __( '3-Column Sidebars Center', 'minn-lite' )
 		);
 
 		$wp_customize->add_section( 'wpgo_column_layout', array(
-			'title'    => __( 'Column Layout', 'wpgothemes' ),
+			'title'    => __( 'Column Layout', 'minn-lite' ),
 			'priority' => 41
 		) );
 
 		$wp_customize->add_setting( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_drp_default_layout]', array(
 			'default' => $wpgo_customizer_defaults['wpgo_drp_default_layout'],
-			'type'    => 'option'
+			'type'    => 'option',
+			'sanitize_callback' => array( &$this, 'sanitize_drp' ),
 		) );
 
 		$wp_customize->add_control( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_drp_default_layout]', array(
-				'label'   => __( 'Select Global Column Layout', 'wpgothemes' ),
+				'label'   => __( 'Select Global Column Layout', 'minn-lite' ),
 				'section' => 'wpgo_column_layout',
 				'type'    => 'select',
 				'choices' => $column_array )
 		);
+	}
+
+	public function sanitize_drp( $input ) {
+
+		$valid = array(
+			'1-col'   => __( '1-Column (full width)', 'minn-lite' ),
+			'2-col-l' => __( '2-Column Sidebar Left', 'minn-lite' ),
+			'2-col-r' => __( '2-Column Sidebar Right', 'minn-lite' ),
+			'3-col-l' => __( '3-Column Sidebars Left', 'minn-lite' ),
+			'3-col-r' => __( '3-Column Sidebars Right', 'minn-lite' ),
+			'3-col-c' => __( '3-Column Sidebars Center', 'minn-lite' )
+		);
+
+		if ( array_key_exists( $input, $valid ) ) {
+			return $input;
+		} else {
+			return '';
+		}
 	}
 }

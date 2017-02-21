@@ -34,6 +34,11 @@
 			<div id="logo-wrap">
 				<?php
 
+				// get logo
+				if ( has_custom_logo() ) {
+					echo '<div class="site-logo">' . get_custom_logo() . '</div>';
+				}
+
 				if ( is_front_page() || is_home() || is_archive() ) {
 					echo '<h1 id="site-title"><span><a href="' . get_home_url() . '" />' . get_bloginfo( 'name' ) . '</a></span></h1>';
 				} else {

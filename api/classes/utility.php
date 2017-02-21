@@ -510,7 +510,7 @@ class WPGo_Utility {
 	 */
 	public static function hide_title_header_tag( $id, $hd_tag = 'h1', $classes = '', $post_meta_id = '_wpgo_hide_title_header_tag' ) {
 
-		$empty_placeholder = '(' . __( 'no title', 'wpgothemes' ) . ')';
+		$empty_placeholder = '(' . __( 'no title', 'minn-lite' ) . ')';
 		$empty_placeholder = WPGo_Hooks::wpgo_empty_title_placeholder( $empty_placeholder );
 
 		/* Sanitize CSS class list. */
@@ -777,7 +777,7 @@ class WPGo_Utility {
 	public static function check_empty_post_title( $post_id = null, $tag = 'h2', $no_title = '', $tag_class = "entry-title", $rel = "bookmark" ) {
 
 		if ( empty( $no_title ) ) {
-			$no_title = __( '(no title)', 'wpgothemes' );
+			$no_title = __( '(no title)', 'minn-lite' );
 		} // specified here rather than as a default parameter so it's translatable
 
 		/* Return if no post id. */
@@ -1070,10 +1070,10 @@ class WPGo_Utility {
 		global $wp_query;
 
 		if ( ! $next ) {
-			$next = __( 'Next', 'wpgothemes' ) . '&nbsp;&raquo;';
+			$next = __( 'Next', 'minn-lite' ) . '&nbsp;&raquo;';
 		}
 		if ( ! $prev ) {
-			$prev = '&laquo;&nbsp;' . __( 'Previous', 'wpgothemes' );
+			$prev = '&laquo;&nbsp;' . __( 'Previous', 'minn-lite' );
 		}
 
 		if ( $show_pages ) { // show numbered next/previous paginated nav links

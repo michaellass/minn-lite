@@ -11,7 +11,7 @@ class WPGo_Main_Theme extends WPGo_Framework {
 	public function __construct( $theme_name ) {
 
 		define( 'WPGO_PARENT_THEME_DEMO_URL', 'http://demo.wpgothemes.com/minn/' );
-		define( 'WPGO_PARENT_THEME_DEMO_LABEL', 'Minn Live Demo' );
+		define( 'WPGO_PARENT_THEME_DEMO_LABEL', 'Minn Pro Demo' );
 
 		/* Call parent constructor manually to make both constructors fire. */
 		parent::__construct( $theme_name );

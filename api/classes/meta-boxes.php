@@ -27,8 +27,8 @@ class WPGo_MetaBoxes {
 		$options = get_option( WPGO_OPTIONS_DB_NAME );
 
 		/* Add Display Options meta box to Post/Page editor. */
-		add_meta_box( 'wpgo-post-display-options-meta', __( 'Post Display Options', 'wpgothemes' ), array( &$this, 'theme_meta_box_display_options' ), 'post', 'side', 'default', array( 'type' => 'post' ) );
-		add_meta_box( 'wpgo-page-display-options-meta', __( 'Page Display Options', 'wpgothemes' ), array( &$this, 'theme_meta_box_display_options' ), 'page', 'side', 'default', array( 'type' => 'page' ) );
+		add_meta_box( 'wpgo-post-display-options-meta', __( 'Post Display Options', 'minn-lite' ), array( &$this, 'theme_meta_box_display_options' ), 'post', 'side', 'default', array( 'type' => 'post' ) );
+		add_meta_box( 'wpgo-page-display-options-meta', __( 'Page Display Options', 'minn-lite' ), array( &$this, 'theme_meta_box_display_options' ), 'page', 'side', 'default', array( 'type' => 'page' ) );
 
 		/* Hook to save our meta box data when the post is saved. */
 		add_action( 'save_post', array( &$this, 'theme_display_options_save_meta_box' ) );
@@ -48,18 +48,18 @@ class WPGo_MetaBoxes {
 		?>
 
 		<div class="inside">
-			<p><strong><?php _e( 'Column layout', 'wpgo-cpt-plugin' ); ?></strong></p>
-			<label class="screen-reader-text" for="wpgo_column_layout"><?php _e( 'Column layout', 'wpgo-cpt-plugin' ); ?></label>
+			<p><strong><?php _e( 'Column layout', 'minn-lite' ); ?></strong></p>
+			<label class="screen-reader-text" for="wpgo_column_layout"><?php _e( 'Column layout', 'minn-lite' ); ?></label>
 
 			<p>
 				<select name='wpgo_column_layout' class='widefat'>
-					<option value='default' <?php selected( 'default', $wpgo_column_layout ); ?>><?php _e( '(Default theme setting)', 'wpgothemes' ); ?></option>
-					<option value='1-col' <?php selected( '1-col', $wpgo_column_layout ); ?>><?php _e( '1-Column (full width)', 'wpgothemes' ); ?></option>
-					<option value='2-col-l' <?php selected( '2-col-l', $wpgo_column_layout ); ?>><?php _e( '2-Column Sidebar Left', 'wpgothemes' ); ?></option>
-					<option value='2-col-r' <?php selected( '2-col-r', $wpgo_column_layout ); ?>><?php _e( '2-Column Sidebar Right', 'wpgothemes' ); ?></option>
-					<option value='3-col-l' <?php selected( '3-col-l', $wpgo_column_layout ); ?>><?php _e( '3-Column Sidebars Left', 'wpgothemes' ); ?></option>
-					<option value='3-col-r' <?php selected( '3-col-r', $wpgo_column_layout ); ?>><?php _e( '3-Column Sidebars Right', 'wpgothemes' ); ?></option>
-					<option value='3-col-c' <?php selected( '3-col-c', $wpgo_column_layout ); ?>><?php _e( '3-Column Content Center', 'wpgothemes' ); ?></option>
+					<option value='default' <?php selected( 'default', $wpgo_column_layout ); ?>><?php _e( '(Default theme setting)', 'minn-lite' ); ?></option>
+					<option value='1-col' <?php selected( '1-col', $wpgo_column_layout ); ?>><?php _e( '1-Column (full width)', 'minn-lite' ); ?></option>
+					<option value='2-col-l' <?php selected( '2-col-l', $wpgo_column_layout ); ?>><?php _e( '2-Column Sidebar Left', 'minn-lite' ); ?></option>
+					<option value='2-col-r' <?php selected( '2-col-r', $wpgo_column_layout ); ?>><?php _e( '2-Column Sidebar Right', 'minn-lite' ); ?></option>
+					<option value='3-col-l' <?php selected( '3-col-l', $wpgo_column_layout ); ?>><?php _e( '3-Column Sidebars Left', 'minn-lite' ); ?></option>
+					<option value='3-col-r' <?php selected( '3-col-r', $wpgo_column_layout ); ?>><?php _e( '3-Column Sidebars Right', 'minn-lite' ); ?></option>
+					<option value='3-col-c' <?php selected( '3-col-c', $wpgo_column_layout ); ?>><?php _e( '3-Column Content Center', 'minn-lite' ); ?></option>
 				</select>
 				<input type="hidden" name="wpgo_column_layout_save" id="wpgo_theme_column_layout_save" value="<?php echo esc_attr( $wpgo_theme_column_layout_save ); ?>">
 			</p>

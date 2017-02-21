@@ -63,10 +63,11 @@ class WPGo_Customize_Site_Title {
 		/* Add checkbox to display/hide site tagline. */
 		$wp_customize->add_setting( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_chk_hide_description]', array(
 			'default' => $wpgo_customizer_defaults['wpgo_chk_hide_description'],
-			'type'    => 'option'
+			'type'    => 'option',
+			'sanitize_callback' => array( &$this, 'sanitize_checkbox' ),
 		) );
 		$wp_customize->add_control( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_chk_hide_description]', array(
-			'label'   => __( 'Hide tagline', 'wpgothemes' ),
+			'label'   => __( 'Hide tagline', 'minn-lite' ),
 			'section' => 'title_tagline',
 			'type'    => 'checkbox'
 		) );
@@ -79,6 +80,14 @@ class WPGo_Customize_Site_Title {
 		/* Update theme customizer transport setting for site title and tagline so they change in real-time. */
 		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+	}
+
+	public function sanitize_checkbox( $input ) {
+		if ( $input == 1 ) {
+			return 1;
+		} else {
+			return '';
+		}
 	}
 
 	/**

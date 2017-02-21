@@ -48,7 +48,6 @@ class WPGo_Framework {
 		$this->_utility_callbacks_class    = new WPGo_Utility_Callbacks();
 		$this->_meta_boxes_class           = new WPGo_MetaBoxes();
 		$this->_theme_customizer_class     = new WPGo_Theme_Customizer();
-		$this->_deprecated_class           = new WPGo_Deprecated();
 		$this->_theme_options_class        = new WPGo_Theme_Options();
 		$this->_widgets_admin_class        = new WPGo_Widget_Admin();
 		$this->_template_parts             = new WPGo_Template_Parts();
@@ -109,6 +108,18 @@ class WPGo_Framework {
 	public function setup_default_features() {
 
 		/** WORDPRESS BUILT-IN SUPPORTED THEME FEATURES **/
+
+		// Only enable the core custom logo feature if we are on WP 4.5 or above.
+		if ( version_compare( get_bloginfo( 'version' ), '4.5', '>=' ) ) {
+			if ( ! current_theme_supports( 'custom-logo' ) ) { // Add core logo support.
+				add_theme_support( 'custom-logo' );
+			}
+		}
+
+		// Add title tag via wp core.
+		if ( ! current_theme_supports( 'title-tag' ) ) {
+			add_theme_support( 'title-tag' );
+		}
 
 		if ( ! current_theme_supports( 'automatic-feed-links' ) ) {
 			add_theme_support( 'automatic-feed-links' );
@@ -188,11 +199,11 @@ class WPGo_Framework {
 		$locale_filename   = $locale_mofile_dir . '/' . $locale . '.mo';
 
 		/* Set theme text domain and .mo file. */
-		if ( file_exists( STYLESHEETPATH . '/' . $locale_filename ) ) {
-			load_theme_textdomain( 'wpgothemes', STYLESHEETPATH . '/' . $locale_mofile_dir );
+		if ( file_exists( get_stylesheet_directory() . '/' . $locale_filename ) ) {
+			load_theme_textdomain( 'minn-lite', get_stylesheet_directory() . '/' . $locale_mofile_dir );
 		} else {
-			if ( file_exists( TEMPLATEPATH . '/' . $locale_filename ) ) {
-				load_theme_textdomain( 'wpgothemes', TEMPLATEPATH . '/' . $locale_mofile_dir );
+			if ( file_exists( get_template_directory() . '/' . $locale_filename ) ) {
+				load_theme_textdomain( 'minn-lite', get_template_directory() . '/' . $locale_mofile_dir );
 			}
 		}
 	}
@@ -234,7 +245,7 @@ class WPGo_Framework {
 				/* Defaulting to one nav menu. */
 				define( "WPGO_CUSTOM_NAV_MENU_1", WPGO_THEME_NAME_H . "-theme-primary" );
 				register_nav_menus( array(
-					WPGO_CUSTOM_NAV_MENU_1 => __( 'Primary Navigation', 'wpgothemes' ),
+					WPGO_CUSTOM_NAV_MENU_1 => __( 'Primary Navigation', 'minn-lite' ),
 				) );
 			}
 		}
@@ -333,15 +344,15 @@ class WPGo_Framework {
 
 		$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
 				<label>
-					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'wpgothemes' ) . '" value="' . get_search_query() . '" name="s" />
+					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder', 'minn-lite' ) . '" value="' . get_search_query() . '" name="s" />
 				</label>
-				<input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'wpgothemes' ) . '" />
+				<input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button', 'minn-lite' ) . '" />
 			</form>';
 
 		$form = '<div class="search">
                     <form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '" >
-                        <input type="search" placeholder="' . __( 'Search...', 'wpgo-ws-plugin' ) . '" value="' . get_search_query() . '" name="s">
-                        <input type="submit" class="search-submit" value="' . esc_attr__( 'Search', 'wpgothemes' ) . '">
+                        <input type="search" placeholder="' . __( 'Search...', 'minn-lite' ) . '" value="' . get_search_query() . '" name="s">
+                        <input type="submit" class="search-submit" value="' . esc_attr__( 'Search', 'minn-lite' ) . '">
                     </form>
                 </div>';
 

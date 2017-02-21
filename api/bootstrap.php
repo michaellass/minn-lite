@@ -6,7 +6,6 @@
  */
 
 /* Core theme framework class dependencies. */
-require_once( get_template_directory() . '/api/classes/deprecated.php' );
 require_once( get_template_directory() . '/api/classes/meta-boxes.php' );
 require_once( get_template_directory() . '/api/classes/theme-options.php' );
 require_once( get_template_directory() . '/api/classes/utility-callbacks.php' );

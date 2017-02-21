@@ -27,9 +27,9 @@ class WPGo_Widget_Admin {
 
 		/* Primary post widget area. */
 		register_sidebar( array(
-			'name'          => __( 'Post: Primary', 'wpgothemes' ),
+			'name'          => __( 'Post: Primary', 'minn-lite' ),
 			'id'            => 'primary-post-widget-area',
-			'description'   => __( 'The primary single post, and main blog page, widget area', 'wpgothemes' ),
+			'description'   => __( 'The primary single post, and main blog page, widget area', 'minn-lite' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',
@@ -39,9 +39,9 @@ class WPGo_Widget_Admin {
 
 		/* Secondary post widget area. */
 		register_sidebar( array(
-			'name'          => __( 'Post: Secondary', 'wpgothemes' ),
+			'name'          => __( 'Post: Secondary', 'minn-lite' ),
 			'id'            => 'secondary-post-widget-area',
-			'description'   => __( 'The secondary single post widget area. Only displayed on three-column post layouts.', 'wpgothemes' ),
+			'description'   => __( 'The secondary single post widget area. Only displayed on three-column post layouts.', 'minn-lite' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',
@@ -51,9 +51,9 @@ class WPGo_Widget_Admin {
 
 		/* Primary page widget area. */
 		register_sidebar( array(
-			'name'          => __( 'Page: Primary', 'wpgothemes' ),
+			'name'          => __( 'Page: Primary', 'minn-lite' ),
 			'id'            => 'primary-page-widget-area',
-			'description'   => __( 'The primary single page widget area', 'wpgothemes' ),
+			'description'   => __( 'The primary single page widget area', 'minn-lite' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',
@@ -63,9 +63,9 @@ class WPGo_Widget_Admin {
 
 		/* Secondary page widget area. */
 		register_sidebar( array(
-			'name'          => __( 'Page: Secondary', 'wpgothemes' ),
+			'name'          => __( 'Page: Secondary', 'minn-lite' ),
 			'id'            => 'secondary-page-widget-area',
-			'description'   => __( 'The secondary single page widget area. Only displayed on three-column page layouts.', 'wpgothemes' ),
+			'description'   => __( 'The secondary single page widget area. Only displayed on three-column page layouts.', 'minn-lite' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',
@@ -75,9 +75,9 @@ class WPGo_Widget_Admin {
 
 		/* Footer widget area. */
 		register_sidebar( array(
-			'name'          => __( 'Footer', 'wpgothemes' ),
+			'name'          => __( 'Footer', 'minn-lite' ),
 			'id'            => 'footer-widget-area',
-			'description'   => __( 'The footer widget area', 'wpgothemes' ),
+			'description'   => __( 'The footer widget area', 'minn-lite' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',

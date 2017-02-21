@@ -43,7 +43,7 @@ class WPGo_Theme_Options {
 		/* Register theme support fields. */
 		add_settings_field(
 			'wpgo_support_theme_option',
-			__( 'Support and Tutorials', 'wpgothemes' ),
+			__( 'Support and Tutorials', 'minn-lite' ),
 			array( $this, 'render_support_fields' ),
 			WPGO_THEME_MENU_SLUG,
 			'wpgo_default'
@@ -52,7 +52,7 @@ class WPGo_Theme_Options {
 		/* Register theme support fields. */
 		add_settings_field(
 			'wpgo_newsletter_theme_option',
-			__( 'Latest News & Updates', 'wpgothemes' ),
+			__( 'Latest News & Updates', 'minn-lite' ),
 			array( $this, 'render_newsletter_fields' ),
 			WPGO_THEME_MENU_SLUG,
 			'wpgo_default'
@@ -61,7 +61,7 @@ class WPGo_Theme_Options {
 		/* Register theme support fields. */
 		add_settings_field(
 			'wpgo_offer_theme_option',
-			__( 'Upgrade Offer', 'wpgothemes' ),
+			__( 'Upgrade Offer', 'minn-lite' ),
 			array( $this, 'render_offer_fields' ),
 			WPGO_THEME_MENU_SLUG,
 			'wpgo_default'
@@ -117,10 +117,10 @@ class WPGo_Theme_Options {
 	 */
 	public function render_offer_fields() {
 		?>
-		<p><a href="http://wpgothemes.com/<?php echo WPGO_THEME_NAME_H; ?>-offer/" target="_blank"><img class="wpgo-upgrade-image" src="<?php echo WPGO_THEME_ROOT_URI; ?>/images/sale30off-theme.png" /></a></p>
+		<p style="display:none;"><a href="http://wpgothemes.com/<?php echo WPGO_THEME_NAME_H; ?>-offer/" target="_blank"><img class="wpgo-upgrade-image" src="<?php echo WPGO_THEME_ROOT_URI; ?>/images/sale30off-theme.png" /></a></p>
 		<div class="wpgo-buttons mg">
-			<p class="description">Exclusive offer for our free theme users. Upgrade <?php echo WPGO_THEME_NAME; ?> to the full version <strong>with a 30% discount!</strong></p>
-			<p class="wpgo-upgrade-button"><a class="button-secondary wpgo-lower" href="http://wpgothemes.com/<?php echo WPGO_THEME_NAME_H; ?>-offer/" target="_blank"><strong>UPGRADE NOW - <u>30% OFF</u></strong></a>&nbsp;&nbsp;<a class="button-secondary wpgo-lower" href="<?php echo WPGO_PARENT_THEME_DEMO_URL; ?>" target="_blank"><?php echo WPGO_PARENT_THEME_DEMO_LABEL; ?></a></p>
+			<p class="description">Exclusive offer for our free theme users. Get 30% OFF Minn Pro!</strong></p>
+			<p class="wpgo-upgrade-button"><a class="button-secondary wpgo-lower" href="https://wpgothemes.com/checkout/?edd_action=add_to_cart&discount=wpgo30off&download_id=488&edd_options&#91;price_id&#93;=0" target="_blank"><strong>UPGRADE TO PRO - <u>APPLY 30% DISCOUNT</u></strong></a>&nbsp;&nbsp;<a class="button-secondary wpgo-lower" href="<?php echo WPGO_PARENT_THEME_DEMO_URL; ?>" target="_blank"><?php echo WPGO_PARENT_THEME_DEMO_LABEL; ?></a></p>
 		</div>
 	<?php
 	}
@@ -133,7 +133,7 @@ class WPGo_Theme_Options {
 	public function render_theme_form() {
 		?>
 		<div class="wrap">
-			<h2><?php printf( __( '%s Theme Support', 'wpgothemes' ), WPGO_THEME_NAME ); ?></h2>
+			<h2><?php printf( __( '%s Theme Support', 'minn-lite' ), WPGO_THEME_NAME ); ?></h2>
 
 			<?php
 			// Check to see if user clicked on the reset options button
@@ -147,7 +147,7 @@ class WPGo_Theme_Options {
 				// Display update notice here
 				?>
 				<div class="error">
-				<p><?php printf( __( '%s theme options have been reset!', 'wpgothemes' ), WPGO_THEME_NAME ); ?></p>
+				<p><?php printf( __( '%s theme options have been reset!', 'minn-lite' ), WPGO_THEME_NAME ); ?></p>
 				</div><?php
 				$this->wpgo_fadeout_element( '.error' ); // fadeout .updated class
 			}
@@ -156,7 +156,7 @@ class WPGo_Theme_Options {
 			if ( isset( $_GET['settings-updated'] ) && ! isset( $_POST['reset_options'] ) ) {
 				?>
 				<div class="updated">
-				<p><?php printf( __( '%s theme options updated!', 'wpgothemes' ), WPGO_THEME_NAME ); ?></p></div><?php
+				<p><?php printf( __( '%s theme options updated!', 'minn-lite' ), WPGO_THEME_NAME ); ?></p></div><?php
 				$this->wpgo_fadeout_element(); // fadeout .updated class
 			}
 			?>
@@ -321,7 +321,7 @@ class WPGo_Theme_Options {
 
 		$args = array( 'parent' => 'appearance',
 					   'id'     => 'wpgo-theme-options',
-					   'title'  => sprintf( __( '%s Support', 'wpgothemes' ), WPGO_THEME_NAME ),
+					   'title'  => sprintf( __( '%s Support', 'minn-lite' ), WPGO_THEME_NAME ),
 					   'href'   => $href
 		);
 		$wp_admin_bar->add_node( $args );

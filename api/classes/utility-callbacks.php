@@ -19,8 +19,6 @@ class WPGo_Utility_Callbacks {
 		add_filter( 'wp_page_menu_args', array( &$this, 'theme_page_menu_args' ) );
 		add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
 		add_action( 'wpgo_before_head', array( &$this, 'wpgo_custom_before_head' ) );
-		add_action( 'wpgo_head_top', array( &$this, 'wpgo_theme_title' ) );
-		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_open_sans_font' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_dashicons_font' ) );
 
 		/* Priority set to 11 as it needs to run after all other 'wpgo_before_content_open' hook callbacks. */
@@ -28,6 +26,9 @@ class WPGo_Utility_Callbacks {
 
 		/* Priority set to 11 as it needs to run after all other 'wpgo_after_content_close' hook callbacks. */
 		add_action( 'wpgo_after_content_close', array( &$this, 'sidebar_after_content' ), 11 );
+
+		add_action( 'customize_controls_enqueue_scripts', array( &$this, 'enqueue_customizer_panel_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( &$this, 'nav_menu_scripts' ) );
 	}
 
 	/**
@@ -120,16 +121,6 @@ class WPGo_Utility_Callbacks {
 	}
 
 	/**
-	 * Output browser title for the current page.
-	 *
-	 * @since 0.1.0
-	 */
-	public function wpgo_theme_title() {
-
-		echo "<title>" . wp_title( '|', false, 'right' ) . "</title>";
-	}
-
-	/**
 	 * Default theme comments template
 	 *
 	 * @since 0.1.0
@@ -143,18 +134,18 @@ class WPGo_Utility_Callbacks {
 		<div id="comment-<?php comment_ID(); ?>">
 			<div class="comment-author vcard">
 				<?php echo get_avatar( $comment, 40 ); ?>
-				<?php printf( __( '%s <span class="says">says:</span>', 'wpgothemes' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+				<?php printf( __( '%s <span class="says">says:</span>', 'minn-lite' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
 			</div>
 			<!-- .comment-author .vcard -->
 			<?php if ( $comment->comment_approved == '0' ) : ?>
-				<em><?php _e( 'Your comment is awaiting moderation.', 'wpgothemes' ); ?></em><br>
+				<em><?php _e( 'Your comment is awaiting moderation.', 'minn-lite' ); ?></em><br>
 			<?php endif; ?>
 
 			<div class="comment-meta commentmetadata">
 				<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 					<?php
 					/* translators: 1: date, 2: time */
-					printf( __( '%1$s at %2$s', 'wpgothemes' ), get_comment_date(), get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'wpgothemes' ), ' ' );
+					printf( __( '%1$s at %2$s', 'minn-lite' ), get_comment_date(), get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'minn-lite' ), ' ' );
 				?>
 
 				<div class="reply">
@@ -174,7 +165,7 @@ class WPGo_Utility_Callbacks {
 		case 'trackback' :
 		?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'wpgothemes' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'wpgothemes' ), ' ' ); ?></p>
+		<p><?php _e( 'Pingback:', 'minn-lite' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'minn-lite' ), ' ' ); ?></p>
 	<?php
 	break;
 	endswitch;
@@ -267,50 +258,6 @@ class WPGo_Utility_Callbacks {
 	}
 
 	/**
-	 * Enqueue Open-Sans font on front end if user not logged in.
-	 *
-	 * From WordPress 3.8 the Open-Sans font is automatically enqueued on front end when user is logged in. However,
-	 * we still need this to be enqueued when not logged in.
-	 *
-	 * @since 0.2.0
-	 */
-	public function enqueue_open_sans_font() {
-
-		// only need to enqueue if user NOT logged in
-		if ( is_user_logged_in() ) {
-			return;
-		}
-
-		$open_sans_font_url = '';
-
-		/* translators: If there are characters in your language that are not supported
-		 * by Open Sans, translate this to 'off'. Do not translate into your own language.
-		 */
-		if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'wpgothemes' ) ) {
-			$subsets = 'latin,latin-ext';
-
-			/* translators: To add an additional Open Sans character subset specific to your language,
-			 * translate this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language.
-			 */
-			$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'wpgothemes' );
-
-			if ( 'cyrillic' == $subset ) {
-				$subsets .= ',cyrillic,cyrillic-ext';
-			} elseif ( 'greek' == $subset ) {
-				$subsets .= ',greek,greek-ext';
-			} elseif ( 'vietnamese' == $subset ) {
-				$subsets .= ',vietnamese';
-			}
-
-			// Hotlink Open Sans, for now
-			$open_sans_font_url = "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&subset=$subsets";
-		}
-
-		wp_register_style( 'wpgo-open-sans-font', $open_sans_font_url );
-		wp_enqueue_style( 'wpgo-open-sans-font' );
-	}
-
-	/**
 	 * Enqueue Dashicons on the front end if user not logged in.
 	 *
 	 * From WordPress 3.8 the Dashicons font is automatically enqueued on front end when user is logged in. However,
@@ -329,5 +276,22 @@ class WPGo_Utility_Callbacks {
 		$suffix = SCRIPT_DEBUG ? '' : '.min';
 		wp_register_style( 'wpgo-dashicons', "/wp-includes/css/dashicons$suffix.css" );
 		wp_enqueue_style( 'wpgo-dashicons' );
+	}
+
+	/** Scripts to be added to the customizer frame. */
+	public function enqueue_customizer_panel_scripts() {
+
+		wp_register_style( 'wpgo-customizer-panel-css', WPGO_THEME_ROOT_URI . '/api/css/wpgo-customizer-panel.css' );
+		wp_enqueue_style( 'wpgo-customizer-panel-css' );
+
+		wp_register_script( 'wpgo-customizer-panel-js', WPGO_THEME_ROOT_URI . '/api/js/wpgo-customizer-panel.js', array( 'jquery' ), false, true );
+		wp_enqueue_script( 'wpgo-customizer-panel-js' );
+	}
+
+	/** Scripts to be added for nav menu functionality. */
+	public function nav_menu_scripts() {
+
+		wp_register_script( 'wpgo-nav-menu-js', WPGO_THEME_ROOT_URI . '/api/js/wpgo-nav-menu.js', array( 'jquery' ), false, true );
+		wp_enqueue_script( 'wpgo-nav-menu-js' );
 	}
 }

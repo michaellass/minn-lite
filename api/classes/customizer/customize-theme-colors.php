@@ -235,22 +235,22 @@ class WPGo_Customize_Theme_Colors {
 
 				foreach($wpgo_color_pickers as $color_picker) :
 
-					if(isset($color_picker['transport']) && $color_picker['transport']=='refresh')
-						{continue;
-} // don't add jQuery to bind elements for refresh
+					if(isset($color_picker['transport']) && $color_picker['transport']=='refresh') {
+						continue;
+					} // don't add jQuery to bind elements for refresh
 
 					foreach( $color_picker['css'] as $selector => $css_rule ) : ?>
 
-				wp.customize('<?php echo WPGO_CUSTOMIZE_DB_NAME.'['.$color_picker['setting'].']'; ?>', function (value) {
-					value.bind(function (to) {
-						$('<?php echo $selector; ?>').css('<?php echo $css_rule; ?>', to);
-					});
-				});
-				<?php
+						wp.customize('<?php echo WPGO_CUSTOMIZE_DB_NAME.'['.$color_picker['setting'].']'; ?>', function (value) {
+							value.bind(function (to) {
+								$('<?php echo $selector; ?>').css('<?php echo $css_rule; ?>', to);
+							});
+						});
+						<?php
 
-									endforeach;
+					endforeach;
 
-								endforeach; ?>
+				endforeach; ?>
 
 			})(jQuery)
 		</script>
@@ -269,13 +269,17 @@ class WPGo_Customize_Theme_Colors {
 		/* Individual customizer color picker options. */
 		$wpgo_color_pickers = array(
 			array( 'setting'  => 'wpgo-text-color',
-				   'label'    => __( 'Content Text Color', 'wpgothemes' ),
+				   'label'    => __( 'Content Text Color', 'minn-lite' ),
 				   'css'      => array( '#container' => 'color' ),
 				   'priority' => '24' ),
 			array( 'setting'  => 'wpgo-links-color',
-				   'label'    => __( 'Content Link Color', 'wpgothemes' ),
+				   'label'    => __( 'Content Link Color', 'minn-lite' ),
 				   'css'      => array( '#container a, #container a:link, #container a:visited' => 'color' ),
-				   'priority' => '25' )
+				   'priority' => '25' ),
+			array( 'setting'  => 'wpgo-heading-color',
+			       'label'    => __( 'Heading Color', 'minn-lite' ),
+			       'css'      => array( 'h1, h2, h3, h4, h5, h6, .entry-title, .page-title, .widget-title' => 'color' ),
+			       'priority' => '25' )
 		);
 	}
 
@@ -287,8 +291,9 @@ class WPGo_Customize_Theme_Colors {
 	public function define_color_schemes() {
 
 		$default_colors = array(
-			'wpgo-links-color'                    => '#333',
-			'wpgo-text-color'                     => '#363636',
+			'wpgo-links-color'                    => '#d9b310',
+			'wpgo-heading-color'                  => '#0b3c5d',
+			'wpgo-text-color'                     => '#1d2731',
 		);
 
 		if ( current_theme_supports( 'custom-background' ) ) {
@@ -303,7 +308,7 @@ class WPGo_Customize_Theme_Colors {
 		/* Individual customizer color picker defaults. */
 		$this->_wpgo_color_schemes = array(
 			array(
-				'label'          => __( 'Default', 'wpgothemes' ),
+				'label'          => __( 'Default', 'minn-lite' ),
 				'name'           => 'default',
 				'default_colors' => $default_colors
 			)
@@ -385,7 +390,7 @@ class WPGo_Customize_Theme_Colors {
 				'transport'  => $transport,
 				'default'    => $default,
 				'type'       => 'option',
-				//'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_callback' => 'sanitize_hex_color',
 				'capability' => 'edit_theme_options',
 			) );
 
@@ -429,16 +434,31 @@ class WPGo_Customize_Theme_Colors {
 			'default'    => $wpgo_customizer_defaults['wpgo_drp_color_scheme'],
 			'type'       => 'option',
 			'transport'  => 'postMessage',
-			'capability' => 'edit_theme_options'
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => array( &$this, 'sanitize_drp' ),
 		) );
 
 		$wp_customize->add_control( WPGO_CUSTOMIZE_DB_NAME . '[wpgo_drp_color_scheme]', array(
-				'label'    => __( 'Select Color Scheme', 'wpgothemes' ),
+				'label'    => __( 'Select Color Scheme', 'minn-lite' ),
 				'section'  => 'colors',
 				'type'     => 'select',
 				'priority' => 2,
 				'choices'  => $col_scheme_array )
 		);
+	}
+
+	public function sanitize_drp( $input ) {
+
+		$valid = array();
+		foreach ( $this->_wpgo_color_schemes as $wpgo_color_scheme ) {
+			$valid[$wpgo_color_scheme['name']] = $wpgo_color_scheme['label'];
+		}
+
+		if ( array_key_exists( $input, $valid ) ) {
+			return $input;
+		} else {
+			return '';
+		}
 	}
 
 	/**
