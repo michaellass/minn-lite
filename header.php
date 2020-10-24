@@ -40,9 +40,9 @@
 				}
 
 				if ( is_front_page() || is_home() || is_archive() ) {
-					echo '<h1 id="site-title"><span><a href="' . get_home_url() . '" />' . get_bloginfo( 'name' ) . '</a></span></h1>';
+					echo '<h1 id="site-title"><span><a href="' . get_home_url() . '">' . get_bloginfo( 'name' ) . '</a></span></h1>';
 				} else {
-					echo '<h2 id="site-title"><span><a href="' . get_home_url() . '" />' . get_bloginfo( 'name' ) . '</a></span></h2>';
+					echo '<h2 id="site-title"><span><a href="' . get_home_url() . '">' . get_bloginfo( 'name' ) . '</a></span></h2>';
 				}
 
 				$opt = WPGo_Theme_Customizer::get_customizer_theme_option( 'wpgo_chk_hide_description' );
