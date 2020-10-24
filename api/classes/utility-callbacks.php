@@ -281,6 +281,8 @@ class WPGo_Utility_Callbacks {
 	/** Scripts to be added to the customizer frame. */
 	public function enqueue_customizer_panel_scripts() {
 
+		return;
+
 		wp_register_style( 'wpgo-customizer-panel-css', WPGO_THEME_ROOT_URI . '/api/css/wpgo-customizer-panel.css' );
 		wp_enqueue_style( 'wpgo-customizer-panel-css' );
 
@@ -290,6 +292,8 @@ class WPGo_Utility_Callbacks {
 
 	/** Scripts to be added for nav menu functionality. */
 	public function nav_menu_scripts() {
+
+		return;
 
 		wp_register_script( 'wpgo-nav-menu-js', WPGO_THEME_ROOT_URI . '/api/js/wpgo-nav-menu.js', array( 'jquery' ), false, true );
 		wp_enqueue_script( 'wpgo-nav-menu-js' );
