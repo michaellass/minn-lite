@@ -128,7 +128,8 @@ class WPGo_Utility_Callbacks {
 	public static function theme_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 	switch ($comment->comment_type) :
-	case '' :
+	case ''        :
+	case 'comment' :
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>">
